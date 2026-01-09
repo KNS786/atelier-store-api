@@ -94,6 +94,8 @@ const orderSchema = new Schema(
   {
     user: { type: Types.ObjectId, ref: 'User', required: true },
 
+    transactionId: String,
+
     firstName: String,
     lastName: String,
     email: String,
