@@ -8,7 +8,7 @@ export const comparePassword = (password: string, hash: string ) =>
     bcrypt.compare(password, hash);
 
 export const generateAccessToken = (payload: object) => 
-    jwt.sign(payload, process.env.JWT_ACCESS_SECRET!, { expiresIn: '15m' })
+    jwt.sign(payload, process.env.JWT_ACCESS_SECRET!, { expiresIn: '2h' })
 
 export const generateRefreshToken = (payload: object) => 
     jwt.sign(payload, process.env.JWT_REFRESH_SECRET!, { expiresIn: '7d'})
