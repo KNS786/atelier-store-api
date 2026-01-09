@@ -12,7 +12,7 @@ export const initiatePayUPayment = async (
   const txnId = `TXN_${Date.now()}`;
 
   const hashString =
-    `${process.env.PAYU_KEY}|${txnId}|${order.totalAmount}|Order_${order._id}|` +
+    `${process.env.PAYU_KEY}|${txnId}|${order.totalAmount}|ECOM_ORDER|` +
     `${order.firstName}|${order.email}|||||||||||${process.env.PAYU_SALT}`;
 
   const hash = crypto
@@ -26,13 +26,19 @@ export const initiatePayUPayment = async (
       key: process.env.PAYU_KEY,
       txnid: txnId,
       amount: order.totalAmount,
-      productinfo: `Order_${order._id}`,
+      productinfo: `ECOM_ORDER`,
       firstname: order.firstName,
       email: order.email,
       phone: order.phone,
+      service_provider: 'payu_paisa', // ✅ REQUIRED FOR TEST
+
       surl: `${process.env.APP_URL}/api/payment/payu/success`,
       furl: `${process.env.APP_URL}/api/payment/payu/failure`,
       hash
     }
   };
 };
+
+
+
+
